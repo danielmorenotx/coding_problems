@@ -32,7 +32,7 @@ var searchInsert = function(nums, target) {
 
     if (nums.indexOf(target) === -1) { // if the target is not found
         nums.push(target); // add the target to the array in place
-        return nums.sort().indexOf(target); // sort, return index where it would be
+        return nums.sort((a, b) => a - b).indexOf(target); // sort numberically, return index where it would be
     } else {
         return nums.indexOf(target); // if found, return the index position of target
     }
