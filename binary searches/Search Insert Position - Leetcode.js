@@ -34,6 +34,6 @@ var searchInsert = function(nums, target) {
         nums.push(target); // add the target to the array in place
         return nums.sort().indexOf(target); // sort, return index where it would be
     } else {
-        return nums.indexOf(target);
+        return nums.indexOf(target); // if found, return the index position of target
     }
 };
