@@ -18,27 +18,26 @@ Return the head of the merged linked list.
  */
 
 var mergeTwoLists = function(list1, list2) {
+    // list1 and list2 are `pointers` to the heads of the lists
+    // so initially .val will result in the first element in the list
 
-    // a linked list value will be the head of the list
-
-    let dummy = new ListNode(); // creates a starting point for the linked lists;
-    // because no values are passed, val === 0 and next === null;
-    let current = dummy; // keep track of the merged lists, will be returned
+    let dummy = new ListNode(); // Creates a dummy node with val = 0 and next = null [0]
+    // we'll store our merged list in the dummy
+    let current = dummy; // `current` points to the dummy node
 
     // check if the two lists are empty
     while (list1 !== null && list2 !== null) {
-        if (list1.val < list2.val) { // checks if starting value of list is bigger in list 1 or 2
-            current.next = list1; // if so, sets the current to the value of list2
-            list1 = list1.next; //
-        } else { // checks if they are the same or if list1.val is bigger
-            current.next = list2; // now pointing to list2
-            // linked list traversal
-            list2 = list2.next; // moves the variable of the list2 to the next variable in the list
+        if (list1.val < list2.val) { // checks which value is bigger
+            current.next = list1; // if so, it adds the list1 node to the dummy 
+            list1 = list1.next; // moves the pointer to the next element
+        } else {
+            current.next = list2; // adds list2 node to the dummy list
+            list2 = list2.next; // moves the pointer to the next element in the list
         }
-        current = current.next;
+        current = current.next; // moves the current pointer to the next node
     }
 
-    // If one of the lists is not empty, append it
+    // If a list pointer is not empty, append it until it is at the end 
     if (list1 !== null) {
         current.next = list1;
     } else if (list2 !== null) {
