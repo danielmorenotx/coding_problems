@@ -13,27 +13,18 @@
  */
 var deleteDuplicates = function(head) {
 
-    let dummy = new ListNode();
-    dummy.next = head;
-    let current = dummy;
+    let dummy = new ListNode(); // new node [0]
+    let current = dummy; // current now points to dummy, initially [0]
 
     while (head !== null) { // checks if the head node exists
-        let hasDuplicates = false;
-
         // if there are consecutive duplicates, this will move the pointer to the last one
         while (head.next !== null && head.val === head.next.val) { // checks that it's not on the last node and that two consecutive are the same
             head = head.next; // this will move the pointer to the next node
-            hasDuplicates = true;
         }
 
-        if (hasDuplicates) {
-            current.next = head;
-            current = current.next;
-        } else {
-            current = current.next
-        }
-
-        // move head to the next node
+        // move heads and currents to the next node
+        current.next = head;
+        current = current.next;
         head = head.next;
     }
 
