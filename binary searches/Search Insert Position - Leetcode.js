@@ -28,12 +28,26 @@ nums contains distinct values sorted in ascending order.
  * @return {number}
  */
 
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
 var searchInsert = function(nums, target) {
+    let start = 0;
+    let end = nums.length - 1;
 
-    if (nums.indexOf(target) === -1) { // if the target is not found
-        nums.push(target); // add the target to the array in place
-        return nums.sort((a, b) => a - b).indexOf(target); // sort numberically, return index where it would be
-    } else {
-        return nums.indexOf(target); // if found, return the index position of target
+    while (start < end) {
+        let mid = Math.floor((start + end) / 2);
+
+        if (nums[mid] === target) {
+            return mid;
+        } else if (nums[mid] < target) {
+            start = mid + 1;
+        } else if (nums[mid] > target) {
+            end = mid - 1;
+        }
     }
+
+    return start + 1;
 };
