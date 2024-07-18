@@ -34,26 +34,23 @@ target is a lowercase English letter.
  * @param {character} target
  * @return {character}
  */
+/**
+ * @param {character[]} letters
+ * @param {character} target
+ * @return {character}
+ */
 var nextGreatestLetter = function(letters, target) {
-    let myLetters = []; // empty array to hold all letters greater than the target
+    let start = 0;
+    let end = letters.length - 1;
 
-    for (let i = 0; i < letters.length; i++) {
-        if (letters[i].localeCompare(target) === 1) { // 1 means it's greater
-            myLetters.push(letters[i]) // all letters greater than the target are added to myLetters array
+    while (start <= end) {
+        let mid = Math.floor((start + end) / 2)
+
+        if (letters[mid] <= target) {
+            start = mid + 1;
+        } else {
+            end = mid - 1;
         }
     }
-
-    let smallest = myLetters[0]; // starts by setting the "smallest" letter to a variable
-
-    for (let i = 1; i < myLetters.length; i++) {
-        if (myLetters[i].localeCompare(target) === -1) { // -1 means it's less than
-            smallest = myLetters[i]; // updates the smallest, by the end of the loop this will be the smallest variable in myLetters
-        };
-    };
-
-    if (myLetters.length === 0) { // if nothing was greater than the target...
-        return letters[0] // it will return the first letter of the letters array.
-    } else {
-        return smallest; // or else it will return the smallest letter
-    }
+    return letters[start % letters.length];
 };
